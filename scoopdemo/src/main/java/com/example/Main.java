@@ -9,6 +9,8 @@ public class Main {
       orderService order=context.getBean(orderService.class);
       orderService order2=context.getBean(orderService.class);
       System.out.println(order==order2);
+      ((AnnotationConfigApplicationContext) context).close();
+
       
 
     }

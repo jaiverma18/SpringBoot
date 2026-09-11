@@ -10,6 +10,7 @@ public class Main {
                 order.placeorder();
                 User user=context.getBean(User.class);
                 user.print();
+                ((AnnotationConfigApplicationContext)context).close();
                
     //    Class<student> c1=student.class;
        //special class which has meta data of student class
