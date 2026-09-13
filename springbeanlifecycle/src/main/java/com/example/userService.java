@@ -1,6 +1,6 @@
 package com.example;
 
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.ApplicationContextAware;
 
