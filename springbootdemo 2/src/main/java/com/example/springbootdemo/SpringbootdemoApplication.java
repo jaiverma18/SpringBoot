@@ -13,10 +13,12 @@ public class SpringbootdemoApplication {
 		  SpringApplication.run(SpringbootdemoApplication.class, args);
 		  OrderService orderService=context.getBean(OrderService.class);
 		  orderService.placeOrder();
-
+	}
+	
 	@Bean
 	public UserService getUserServiceBean(){
 		return new UserService();
 	}
+
 
 }
