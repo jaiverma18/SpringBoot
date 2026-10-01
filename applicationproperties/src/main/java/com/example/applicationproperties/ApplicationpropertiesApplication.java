@@ -2,13 +2,13 @@ package com.example.applicationproperties;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+// import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class ApplicationpropertiesApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context=
+		// ApplicationContext context=
 		SpringApplication.run(ApplicationpropertiesApplication.class, args);
 		// PaymentGateway paymentgateway=context.getBean(PaymentGateway.class);
 		// paymentgateway.setType("paytm");
