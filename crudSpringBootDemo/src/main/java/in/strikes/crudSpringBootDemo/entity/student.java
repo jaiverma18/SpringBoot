@@ -1,18 +1,30 @@
 package in.strikes.crudSpringBootDemo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity 
+@Table(name="student")
 public class student {
     
     @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
     private String name;
     private String email;
     private int age;
     private String room;
+    private String subject;
+    public String getSubject(){
+        return subject;
+    }
+    public void setSubject(String subject){
+        this.subject=subject;
+    }
     public long getId() {
         return id;
     }
@@ -25,7 +37,7 @@ public class student {
     public void setRoom(String room) {
         this.room = room;
     }
-    private String Subject;
+   
     public String getName() {
         return name;
     }
@@ -44,11 +56,6 @@ public class student {
     public void setAge(int age) {
         this.age = age;
     }
-    public String getSubject() {
-        return Subject;
-    }
-    public void setSubject(String subject) {
-        this.Subject = subject;
-    }
+    
 
 }
