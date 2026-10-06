@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Table(name="student")
 public class student {
     
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
@@ -19,6 +19,13 @@ public class student {
     private int age;
     private String room;
     private String subject;
+    private Boolean isDeleted;
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
     public String getSubject(){
         return subject;
     }

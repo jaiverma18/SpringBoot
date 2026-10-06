@@ -5,18 +5,20 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.strikes.crudSpringBootDemo.entity.student;
 import in.strikes.crudSpringBootDemo.service.StudentService;
 
 @RestController //bean created and managed by spring stored is Ioc
-@RequestMapping ("/api/students")
+@RequestMapping ("/api/students" )
 public class studentContoller {
      StudentService studentService;
 
@@ -28,11 +30,12 @@ public class studentContoller {
     @PostMapping("/create")
     public ResponseEntity<student> CreateStudent(@RequestBody student Student)
     {
+      Student.setIsDeleted(false);
        student createdStudent= studentService.CreateStudent(Student);
        return ResponseEntity.status(201).body(createdStudent);
     }
-    @GetMapping ("/get/{id}")
-    public ResponseEntity<student> getStudentById(@PathVariable long id)
+    @GetMapping ("/get")
+    public ResponseEntity<student> getStudentById(@RequestParam Long id)
     {
       student studentresp=studentService.getStudentById(id);
       if(studentresp==null)
@@ -51,8 +54,8 @@ public class studentContoller {
       }
       return ResponseEntity.ok(studentresp);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<student> updateSudent(@PathVariable Long id,@RequestBody student Student)
+    @PutMapping("/update")
+    public ResponseEntity<student> updateSudent(@RequestParam  Long id,@RequestBody student Student)
     {
       student updatedStudent=studentService.updateStudent(id,Student);
       if(updatedStudent==null)
@@ -61,8 +64,8 @@ public class studentContoller {
       }
       return ResponseEntity.status(200).body(updatedStudent);
     }
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Long id)
+    @DeleteMapping ("/delete")
+    public ResponseEntity<String> deleteStudent(@RequestParam Long id)
     {
       boolean isDeleted=studentService.deleteStudent(id);
       if(!isDeleted)
@@ -71,4 +74,15 @@ public class studentContoller {
       }
       return ResponseEntity.status(200).body("Student deleted successfully");
     }
+    @PatchMapping("/delete-soft")
+    public ResponseEntity<String> softDeleteStudent(@RequestParam Long id){
+      Boolean isDeleted=studentService.softDeleteStudent(id);
+      if(!isDeleted)
+      {
+         return ResponseEntity.status(404).body("Student not present");
+      }
+      return ResponseEntity.ok().body("Student soft deleted successfully");
+    }
+    
+    
 }
